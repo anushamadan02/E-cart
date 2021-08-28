@@ -3,11 +3,17 @@ const {ObjectId} = mongoose.Schema;
 
 const planSchema = new mongoose.Schema({
 
+    plan_schema:{
+        type : ObjectId,
+        ref: "PostMessage"
+    },
+    user: {
+        type : ObjectId,
+        ref: "User"
+    },
     plan:{
         type : Number,
         trim : true,
-       
-        
     },
     validity: {
         type : Number,

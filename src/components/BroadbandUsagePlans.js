@@ -19,6 +19,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Plan from './Posts/Post/Plan';
+import { getbroadbands } from '../actions/broadband';
 
 const useStyles_1 = makeStyles((theme) => ({
   formControl: {
@@ -69,6 +70,16 @@ function Broadband() {
       dispatch(getplans());
   }, [dispatch])
 
+  useEffect(() => {
+    if (broadbands.length == 0)
+      dispatch(getbroadbands());
+  }, [dispatch])
+
+  const broadbands = useSelector((state) => state.broadbands);
+  
+  console.log(broadbands)
+
+
   const plans = useSelector((state) => state.plans);
   console.log(plans)
 
@@ -98,7 +109,7 @@ function Broadband() {
 
 
     return (
-     ( datas.length ==0 || plans.length ==0?<CircularProgress />:
+     ( datas.length ==0 || broadbands.length ==0?<CircularProgress />:
       <>
       <Container maxWidth="lg">
         <Grow in>
@@ -186,14 +197,16 @@ function Broadband() {
         <Typography className={classes.title} color="textSecondary" gutterBottom>
         MY CURRENT BROADBAND PLAN
         </Typography>
-        <Typography className={classes.title} gutterBottom variant="h5" component="h4">Plan - Rs {plans[plans.length-1].plan}</Typography>
-        <Typography className={classes.title} gutterBottom variant="h5" component="h5">Validity -{plans[plans.length-1].validity} Days</Typography>
-        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Data - {plans[plans.length-1].data} GB</Typography>
-        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">SMS- Rs {plans[plans.length-1].SMS}/Day</Typography>
-        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Cost- Rs {plans[plans.length-1].cost}</Typography>
-        <Typography className={classes.title} gutterBottom variant="h7" component="h4">TOTAL - {plans[plans.length-1].plan}</Typography>
-        <Typography className={classes.title} gutterBottom variant="h7" component="h4">TOTAL USED - {Total_Consumption}</Typography>
-        <Typography className={classes.title} gutterBottom variant="h7" component="h4">BALANCE - {plans[plans.length-1].data-Total_Consumption}</Typography>
+        <Typography className={classes.title} gutterBottom variant="h5" component="h4">Plan - {broadbands[broadbands.length-1].name}</Typography>
+        <Typography className={classes.title} gutterBottom variant="h5" component="h5">Price -{broadbands[broadbands.length-1].monthlyprice} /Month</Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Plan Type- {broadbands[broadbands.length-1].plantype} </Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Validity {broadbands[broadbands.length-1].validity} days</Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Data {broadbands[broadbands.length-1].data} GB</Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Upload Speed {broadbands[broadbands.length-1].uploadspeed} Mbps</Typography>
+        <Typography className={classes.title} color="textSecondary" gutterBottom variant="h7" component="h6">Speed {broadbands[broadbands.length-1].speed} Mbps</Typography>
+        <Typography className={classes.title} gutterBottom variant="h7" component="h4">TOTAL - </Typography>
+        <Typography className={classes.title} gutterBottom variant="h7" component="h4">TOTAL USED - </Typography>
+        <Typography className={classes.title} gutterBottom variant="h7" component="h4">BALANCE - </Typography>
         <Card className={classes.root}>
         <CardActions disableSpacing>
         <IconButton
@@ -213,12 +226,10 @@ function Broadband() {
             Previous plans
           </Typography>
           <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-      
       </Grid>
         </CardContent>
       </Collapse>
         </Card>
-        
         <Typography className={classes.title} color="textSecondary" gutterBottom>
         </Typography>
         </CardContent>

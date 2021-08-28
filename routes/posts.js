@@ -7,7 +7,8 @@ const {getUserById} = require("../controllers/user")
 router.param("userId",getUserById)
 router.param("postid",getPostMessageById)
 
-router.post("/post/create",createPost)
+//Below thing used for form
+router.post("/post/create/:userId",createPost)
 //READ
 router.get("/post/:postid",getPostMessage)
 router.get("/posts",getAllPosts)

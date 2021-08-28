@@ -2,12 +2,9 @@ const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Schema;
 
 const postSchema = new mongoose.Schema({
-
     plan:{
         type : Number,
         trim : true,
-       
-        
     },
     validity: {
         type : Number,

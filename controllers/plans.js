@@ -40,6 +40,29 @@ exports.createPlan = (req,res) => {
             newplanmessage});
     })
 }
+exports.createPlanNew = (req,res) => {
+   
+    console.log(req)
+    var newPlanMessage = new PlanMessage({
+        plan_schema : req.postmessage._id,
+        user: req.profile._id,
+        plan:req.body.plan,
+        validity:req.body.validity,
+        data:req.body.data,
+        SMS:req.body.SMS,
+        cost:req.body.cost
+    })
+    //const newPlanMessage = new PlanMessage({ plan, validity, data, SMS, cost})
+    newPlanMessage.save((err,newplanmessage)=>{
+        if(err){
+            console.log(err)
+            return res.status(400).json({
+                error : "Unable to save plan to database"
+            })}
+        res.json({
+            newplanmessage});
+    })
+}
 // working
 exports.updatePlan = (req,res) => {
     const planmessage = req.planmessage;

@@ -12,6 +12,7 @@ const orderRoutes = require("./routes/order")
 const postRoutes = require('./routes/posts');
 const dataRoutes = require("./routes/dataconsumption")
 const planRoutes =require('./routes/plans');
+const broadbandRoutes =require('./routes/broadband');
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/csDB', {
@@ -35,7 +36,7 @@ app.use("/api",orderRoutes)
 app.use('/api', postRoutes);
 app.use('/api', dataRoutes);
 app.use('/api', planRoutes);
-
+app.use('/api', broadbandRoutes);
 app.listen(5000,()=>{
     console.log("Server started")
 })

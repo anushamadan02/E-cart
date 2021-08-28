@@ -5,3 +5,5 @@ export const FETCH_ALL = 'FETCH_ALL';
 export const GET_DATAC = 'GET_DATAC';
 export const CREATE_PLAN = 'CREATE_PLAN';
 export const GET_PLAN = 'GET_PLAN';
+export const GET_BROADBAND_PLAN = 'GET_BROADBAND_PLAN';
+export const CREATE_BROADBAND_PLAN = 'CREATE_BROADBAND_PLAN';
